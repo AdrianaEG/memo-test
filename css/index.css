@@ -1,3 +1,11 @@
 .input-group-prepend, #nivel.custom-select, #comenzar{
     height: 50px;
 }
+
+.img-fluid{
+    border: solid;
+}
+
+#cartas .row .col-sm{
+    padding: 5px;
+}
