@@ -8,8 +8,10 @@ $botonComenzar.onclick = function (event) {
         desactivarBoton();
     } else if (nivel === 'Intermedio') {
         juegaIntermedio();
+        desactivarBoton();
     } else {
         juegaDificil();
+        desactivarBoton();
     }
 
     event.preventDefault();
@@ -21,6 +23,7 @@ function desactivarBoton(){
 
 function juegaFacil() {
     creaEstructura(3);
+    //juegaUsuario();
 }
 
 function juegaIntermedio() {
@@ -32,7 +35,6 @@ function juegaDificil() {
 }
 
 function creaEstructura(filas) {
-
     let tablero = document.querySelector('#cartas');
     for (let j = 0; j < filas; j++) {
         let nuevoContenedor = document.createElement('div');
@@ -40,16 +42,26 @@ function creaEstructura(filas) {
 
         tablero.appendChild(nuevoContenedor);
 
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 2; i++) {
             let nuevoCuadro = document.createElement('div');
             nuevoCuadro.className = 'col-sm';
             nuevoContenedor.appendChild(nuevoCuadro);
 
             let nuevaImagen = document.createElement('img');
-            nuevaImagen.className = 'img-fluid';
+            nuevaImagen.className = 'fondo-imagenes';
             nuevaImagen.src = "img/carta01.jpg";
+            nuevaImagen.id = j + "" + i;
 
             nuevoCuadro.appendChild(nuevaImagen);
         }
     }
 }
+
+/*function daImagenesACartasFacil(){
+    let arregloConImagenes = ['manzana.jpg', 'banana.jpg', 'pera.jpg'];
+    
+}*/
+
+/*function juegaUsuario(e){
+    let imagenSeleccionada = e.target;
+}*/
