@@ -10,8 +10,8 @@ $botonComenzar.onclick = function (event) {
     if (nivel === 'Fácil') {
         juegaFacil();
         desactivarBoton();
-        
-        
+
+
     } else if (nivel === 'Intermedio') {
         juegaIntermedio();
         desactivarBoton();
@@ -50,33 +50,30 @@ function juegaUsuario(e) {
     if (movimientos === 1) {
         srcCarta1 = cartaSeleccionada.attributes.src.value;
         idCarta1 = cartaSeleccionada.attributes.id.value;
-        document.getElementById(idCarta1).onclick = function(){};
-        
+        document.getElementById(idCarta1).onclick = function () {};
+
     } else {
         srcCarta2 = cartaSeleccionada.attributes.src.value;
         idCarta2 = cartaSeleccionada.attributes.id.value;
         console.log('LA CARTA 2 es ' + srcCarta2);
         console.log('LA CARTA 1 es ' + srcCarta1);
         console.log(acierta(srcCarta1, srcCarta2));
-        
+
         if (acierta(srcCarta1, srcCarta2)) {
-            //document.getElementById(idCarta1).onclick = function () {};
-            //document.getElementById(idCarta2).onclick = function () {};
-             
 
             document.getElementById(idCarta1).style = 'pointer-events: none'; //DE ESTA MANERA NUNCA MAS SE LE PUEDE HACER CLICK
             document.getElementById(idCarta2).style = 'pointer-events: none';
-            
+
             movimientos = 0;
         } else {
-            setTimeout(function(){
+            setTimeout(function () {
                 document.getElementById(idCarta1).src = 'img/carta01.jpg';
                 document.getElementById(idCarta2).src = 'img/carta01.jpg';
             }, 500);
-            
-            movimientos = 0; 
+
+            movimientos = 0;
             desbloquearCartas();
-        }    
+        }
     }
 }
 
