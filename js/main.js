@@ -60,11 +60,12 @@ function juegaUsuario(e) {
         console.log(acierta(srcCarta1, srcCarta2));
         
         if (acierta(srcCarta1, srcCarta2)) {
-            document.getElementById(idCarta1).onclick = function () {};
-            document.getElementById(idCarta2).onclick = function () {};
-            
-            //document.getElementById(idCarta1).style = 'display:none'; DE ESTA MANERA NUNCA MAS SE LE PUEDE HACER CLICK
-            //document.getElementById(idCarta2).style = 'display:none';
+            //document.getElementById(idCarta1).onclick = function () {};
+            //document.getElementById(idCarta2).onclick = function () {};
+             
+
+            document.getElementById(idCarta1).style = 'pointer-events: none'; //DE ESTA MANERA NUNCA MAS SE LE PUEDE HACER CLICK
+            document.getElementById(idCarta2).style = 'pointer-events: none';
             
             movimientos = 0;
         } else {
