@@ -5,12 +5,22 @@ let arregloConImagenes = ['a.jpg', 'a.jpg', 'b.jpg', 'b.jpg', 'c.jpg', 'c.jpg'];
 let movimientos = 0;
 
 $botonComenzar.onclick = function (event) {
+    reiniciar();
+    
+    n = 0;
+    contadorTiempo = setInterval(function () {
+        document.querySelector('#visor-tiempo').innerText = 'Tiempo de juego: ' + n;
+        n++;
+    }, 1000);
+    
+
+    aciertos = 0;
+
     let nivel = document.querySelector('#nivel').value;
 
     if (nivel === 'Fácil') {
         juegaFacil();
         desactivarBoton();
-
 
     } else if (nivel === 'Intermedio') {
         juegaIntermedio();
@@ -55,14 +65,16 @@ function juegaUsuario(e) {
     } else {
         srcCarta2 = cartaSeleccionada.attributes.src.value;
         idCarta2 = cartaSeleccionada.attributes.id.value;
-        console.log('LA CARTA 2 es ' + srcCarta2);
-        console.log('LA CARTA 1 es ' + srcCarta1);
-        console.log(acierta(srcCarta1, srcCarta2));
+        //console.log('LA CARTA 2 es ' + srcCarta2);
+        //console.log('LA CARTA 1 es ' + srcCarta1);
+        //console.log(acierta(srcCarta1, srcCarta2));
 
         if (acierta(srcCarta1, srcCarta2)) {
 
-            document.getElementById(idCarta1).style = 'pointer-events: none'; //DE ESTA MANERA NUNCA MAS SE LE PUEDE HACER CLICK
+            document.getElementById(idCarta1).style = 'pointer-events: none';
             document.getElementById(idCarta2).style = 'pointer-events: none';
+
+            aciertos++;
 
             movimientos = 0;
         } else {
@@ -74,6 +86,12 @@ function juegaUsuario(e) {
             movimientos = 0;
             desbloquearCartas();
         }
+    }
+
+    if (esGanador()) {
+        document.querySelector('#estado').innerText = 'GANASTE!!! Hace click en comenzar para empezar de nuevo :)';
+        clearInterval(contadorTiempo);
+        $botonComenzar.disabled = false;
     }
 }
 
@@ -94,7 +112,7 @@ function creaEstructura(filas) {
 
         tablero.appendChild(nuevoContenedor);
 
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 4; i++) {
             let nuevoCuadro = document.createElement('div');
             nuevoCuadro.className = 'col-sm';
             nuevoContenedor.appendChild(nuevoCuadro);
@@ -138,3 +156,32 @@ function acierta(src1, src2) {
         return true;
     }
 }
+
+
+function esGanador() {
+    if (aciertos === ((arregloConImagenes.length) / 2)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function reiniciar(){
+    document.querySelector('#estado').innerText = 'A jugar!';
+    eliminarCartasExistentes();
+    mezclarImagenes();
+}
+
+function eliminarCartasExistentes(){    
+    /* FUNCIONA PERO ME DEJA EL ESPACIO DE LO QUE SE ELIMINÓ. 
+    document.querySelectorAll('img').forEach(function($carta){
+        $carta.remove();
+    });*/
+    
+    /* NO FUNCIONA. CONSULTAR
+    let padre = document.querySelector('body');
+    let hijo = document.querySelector('#cartas');
+    padre.removeChild(hijo);*/
+    document.querySelector('#cartas').innerText = '';
+}
+
