@@ -1,8 +1,12 @@
 const $botonComenzar = document.querySelector('#comenzar');
 
-let arregloConImagenes = ['a.jpg', 'a.jpg', 'b.jpg', 'b.jpg', 'c.jpg', 'c.jpg'];
+let arregloConImagenes = ['a.jpg', 'a.jpg', 'b.jpg', 'b.jpg', 'c.jpg', 'c.jpg', 'd.jpg', 'd.jpg', 'e.jpg', 'e.jpg', 'f.jpg', 'f.jpg'];
 
 let movimientos = 0;
+let aciertos = 0;
+
+let n;
+let contadorTiempo;
 
 $botonComenzar.onclick = function (event) {
     reiniciar();
