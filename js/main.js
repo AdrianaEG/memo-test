@@ -197,6 +197,14 @@ function reiniciar() {
 
 }
 
+function eliminarCartasExistentes() {
     document.querySelector('#cartas').innerText = '';
 }
 
+function bloquearCartas(){
+    document.querySelectorAll('img').forEach(function($imagen){
+        $imagen.onclick = function(){
+            
+        };
+    });
+}
