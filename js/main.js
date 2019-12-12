@@ -9,11 +9,7 @@ let contadorTiempo;
 $botonComenzar.onclick = function (event) {
     desactivarBoton();
     
-    n = 0;
-    contadorTiempo = setInterval(function () {
-        document.querySelector('#visor-tiempo').innerText = 'Tiempo de juego: ' + n;
-        n++;
-    }, 1000);
+    reiniciar();
     
 
     aciertos = 0;
