@@ -175,7 +175,15 @@ function esGanador() {
     }
 }
 
-function reiniciar(){
+function reiniciar() {
+    
+    n = 0;
+    contadorTiempo = setInterval(function () {
+        document.querySelector('#visor-tiempo').innerText = 'Tiempo de juego: ' + n;
+        n++;
+    }, 1000);
+    
+    aciertos = 0;
     document.querySelector('#estado').innerText = 'A jugar!';
     eliminarCartasExistentes();
     mezclarImagenes();
