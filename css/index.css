@@ -30,7 +30,7 @@ img{
     width: 800px;
 }
 
-#comenzar, #visor-tiempo, #estado{
+#visor-tiempo, #estado{
     height: 80%;
 }
 
