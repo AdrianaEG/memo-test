@@ -71,8 +71,15 @@ function juegaUsuario(e) {
             }, 500);
 
             movimientos = 0;
-            desbloquearCartas();
+            
+            setTimeout(function(){
+               desbloquearCartas();
+            },500)
+              
         }
+        setTimeout(function(){
+               desbloquearCartas();
+        },500);
     }
 
     if (esGanador()) {
