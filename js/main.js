@@ -57,12 +57,13 @@ function juegaUsuario(e) {
         movimientosTotales++;
 
         if (acierta(srcCarta1, srcCarta2)) {
-
-            document.getElementById(idCarta1).style = 'pointer-events: none';
-            document.getElementById(idCarta2).style = 'pointer-events: none';
-
+            
+            setTimeout(function(){
+                document.getElementById(idCarta1).style = 'pointer-events: none';
+                document.getElementById(idCarta2).style = 'pointer-events: none';
+            },500);
+            
             aciertos++;
-
             movimientos = 0;
         } else {
             setTimeout(function () {
