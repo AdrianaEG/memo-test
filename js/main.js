@@ -109,7 +109,7 @@ function crearMensajesGanador(){
     
     nuevoCuadroMensaje.appendChild(mensaje);
     nuevoContenedor.appendChild(nuevoCuadroMensaje);
-    fila.appendChild(nuevoContenedor);
+    fila.appendChild(nuevoContenedor);*/
 }
 
 function creaEstructura(filas) {
@@ -174,6 +174,7 @@ function esGanador() {
 }
 
 function reiniciar() {
+    document.querySelector('#contador-movimientos').innerText = 'Cantidad de intentos: ';
     
     n = 0;
     contadorTiempo = setInterval(function () {
@@ -190,9 +191,7 @@ function reiniciar() {
     if(document.querySelector('#contenedor-movimientos') !== null){
         document.querySelector('#contenedor-movimientos').remove();
     }
-    document.querySelector('#contenedor-tiempo').className = 'col-sm-5';
-    document.querySelector('#contenedor-boton').classList.remove('centrar');
-
+    document.querySelector('#contenedor-tiempo').className = 'col';
 }
 
 function eliminarCartasExistentes() {
