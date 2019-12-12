@@ -187,6 +187,14 @@ function reiniciar() {
     document.querySelector('#estado').innerText = 'A jugar!';
     eliminarCartasExistentes();
     mezclarImagenes();
+    movimientosTotales = 0;
+    
+    if(document.querySelector('#contenedor-movimientos') !== null){
+        document.querySelector('#contenedor-movimientos').remove();
+    }
+    document.querySelector('#contenedor-tiempo').className = 'col-sm-5';
+    document.querySelector('#contenedor-boton').classList.remove('centrar');
+
 }
 
     document.querySelector('#cartas').innerText = '';
