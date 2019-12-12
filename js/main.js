@@ -119,13 +119,13 @@ function creaEstructura(filas) {
     let tablero = document.querySelector('#cartas');
     for (let j = 0; j < filas; j++) {
         let nuevoContenedor = document.createElement('div');
-        nuevoContenedor.className = 'row';
+        nuevoContenedor.className = 'row row-cols-4';
 
         tablero.appendChild(nuevoContenedor);
 
         for (let i = 0; i < 4; i++) {
             let nuevoCuadro = document.createElement('div');
-            nuevoCuadro.className = 'col-sm';
+            nuevoCuadro.className = 'col';
             nuevoContenedor.appendChild(nuevoCuadro);
 
             let nuevaImagen = document.createElement('img');
