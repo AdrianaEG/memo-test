@@ -83,18 +83,34 @@ function juegaUsuario(e) {
     }
 
     if (esGanador()) {
-        document.querySelector('#estado').innerText = 'GANASTE!!! Hace click en comenzar para empezar de nuevo :)';
-        clearInterval(contadorTiempo);
-        $botonComenzar.disabled = false;
+        ganar();
     }
 }
 
-function juegaIntermedio() {
-    creaEstructura(6);
+function ganar() {
+    
+    clearInterval(contadorTiempo);
+    $botonComenzar.disabled = false;
+    crearMensajesGanador();
+    document.querySelector('#contenedor-tiempo').classList.remove('col-sm-5')
+    document.querySelector('#contenedor-tiempo').classList.add('col-sm');
+    document.querySelector('#contenedor-boton').classList.add('centrar');
 }
 
-function juegaDificil() {
-    creaEstructura(9);
+function crearMensajesGanador(){
+    document.querySelector('#estado').innerText = 'GANASTE!!! Hace click en comenzar para empezar de nuevo :)';
+    
+    let fila = document.querySelector('.row');
+    let nuevoContenedor = document.createElement('div');
+    nuevoContenedor.className = 'col-sm-3';
+    nuevoContenedor.setAttribute('id', 'contenedor-movimientos');
+    let nuevoCuadroMensaje = document.createElement('div');
+    nuevoCuadroMensaje.className = 'alert alert-primary';
+    let mensaje = document.createTextNode('Cantidad de movimientos realizados: ' + movimientosTotales);
+    
+    nuevoCuadroMensaje.appendChild(mensaje);
+    nuevoContenedor.appendChild(nuevoCuadroMensaje);
+    fila.appendChild(nuevoContenedor);
 }
 
 function creaEstructura(filas) {
@@ -134,8 +150,6 @@ function mezclarImagenes() {
     }
     return arregloConImagenes;
 }
-
-console.log(mezclarImagenes());
 
 function desbloquearCartas() {
     document.querySelectorAll('img').forEach(function ($carta) {
