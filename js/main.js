@@ -30,6 +30,15 @@ function juegaUsuario(e) {
 
     let cartaSeleccionada = e.target;
     let idDeCartaSeleccionada = cartaSeleccionada.attributes.id.value;
+    
+    cartaSeleccionada.style.transition = "all 0.7s ease" ;
+    cartaSeleccionada.style.transform = "rotateY(360deg)";
+    
+    setTimeout(function(){
+        cartaSeleccionada.style.transition = '';
+        cartaSeleccionada.style.transform = '';
+    }, 500);
+    
     cartaSeleccionada.src = "img/" + arregloConImagenes[idDeCartaSeleccionada];
 
     movimientos++;
@@ -38,13 +47,14 @@ function juegaUsuario(e) {
         srcCarta1 = cartaSeleccionada.attributes.src.value;
         idCarta1 = cartaSeleccionada.attributes.id.value;
         document.getElementById(idCarta1).onclick = function () {};
+        
 
     } else {
+        bloquearCartas();
         srcCarta2 = cartaSeleccionada.attributes.src.value;
         idCarta2 = cartaSeleccionada.attributes.id.value;
-        //console.log('LA CARTA 2 es ' + srcCarta2);
-        //console.log('LA CARTA 1 es ' + srcCarta1);
-        //console.log(acierta(srcCarta1, srcCarta2));
+        
+        movimientosTotales++;
 
         if (acierta(srcCarta1, srcCarta2)) {
 
