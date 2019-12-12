@@ -127,7 +127,7 @@ function creaEstructura(filas) {
             nuevoContenedor.appendChild(nuevoCuadro);
 
             let nuevaImagen = document.createElement('img');
-            nuevaImagen.className = 'fondo-imagenes';
+            nuevaImagen.className = 'img-fluid fondo-imagenes';
             nuevaImagen.src = "img/carta01.jpg";
             nuevaImagen.id = numeroCarta;
 
