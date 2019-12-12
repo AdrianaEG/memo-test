@@ -27,6 +27,7 @@ img{
 #cartas{
     text-align: center;
     padding-top: 25px;
+    width: 800px;
 }
 
 #comenzar, #visor-tiempo, #estado{
