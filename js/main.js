@@ -176,16 +176,6 @@ function reiniciar(){
     mezclarImagenes();
 }
 
-function eliminarCartasExistentes(){    
-    /* FUNCIONA PERO ME DEJA EL ESPACIO DE LO QUE SE ELIMINÓ. 
-    document.querySelectorAll('img').forEach(function($carta){
-        $carta.remove();
-    });*/
-    
-    /* NO FUNCIONA. CONSULTAR
-    let padre = document.querySelector('body');
-    let hijo = document.querySelector('#cartas');
-    padre.removeChild(hijo);*/
     document.querySelector('#cartas').innerText = '';
 }
 
