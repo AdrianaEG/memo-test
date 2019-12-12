@@ -21,12 +21,6 @@ function desactivarBoton() {
     $botonComenzar.disabled = 'true';
 }
 
-function juegaFacil() {
-    creaEstructura(3);
-    desbloquearCartas();
-}
-
-
 let srcCarta1 = '';
 let srcCarta2 = '';
 let idCarta1 = '';
@@ -36,7 +30,6 @@ function juegaUsuario(e) {
 
     let cartaSeleccionada = e.target;
     let idDeCartaSeleccionada = cartaSeleccionada.attributes.id.value;
-
     cartaSeleccionada.src = "img/" + arregloConImagenes[idDeCartaSeleccionada];
 
     movimientos++;
