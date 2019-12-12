@@ -55,6 +55,7 @@ function juegaUsuario(e) {
         idCarta2 = cartaSeleccionada.attributes.id.value;
         
         movimientosTotales++;
+        document.querySelector('#contador-movimientos').innerText = 'Cantidad de intentos: ' + movimientosTotales;
 
         if (acierta(srcCarta1, srcCarta2)) {
             
@@ -93,15 +94,12 @@ function ganar() {
     clearInterval(contadorTiempo);
     $botonComenzar.disabled = false;
     crearMensajesGanador();
-    document.querySelector('#contenedor-tiempo').classList.remove('col-sm-5')
-    document.querySelector('#contenedor-tiempo').classList.add('col-sm');
-    document.querySelector('#contenedor-boton').classList.add('centrar');
 }
 
 function crearMensajesGanador(){
     document.querySelector('#estado').innerText = 'GANASTE!!! Hace click en comenzar para empezar de nuevo :)';
     
-    let fila = document.querySelector('.row');
+    /*let fila = document.querySelector('.row');
     let nuevoContenedor = document.createElement('div');
     nuevoContenedor.className = 'col-sm-3';
     nuevoContenedor.setAttribute('id', 'contenedor-movimientos');
