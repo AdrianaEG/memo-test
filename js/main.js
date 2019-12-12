@@ -11,22 +11,8 @@ $botonComenzar.onclick = function (event) {
     
     reiniciar();
     
-
-    aciertos = 0;
-
-    let nivel = document.querySelector('#nivel').value;
-
-    if (nivel === 'Fácil') {
-        juegaFacil();
-        desactivarBoton();
-
-    } else if (nivel === 'Intermedio') {
-        juegaIntermedio();
-        desactivarBoton();
-    } else {
-        juegaDificil();
-        desactivarBoton();
-    }
+    creaEstructura(3);
+    desbloquearCartas();
 
     event.preventDefault();
 }
