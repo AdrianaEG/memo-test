@@ -47,5 +47,15 @@ img{
     #menu, #boton-mensaje, #cartas{
     width: 100%;
     }
+    
+    #menu, #contenedor-menu{
+        display: inline;
+    }
+    
+    #visor-tiempo, #estado, #contador-movimientos{
+        width: 450px;
+        
+    }
+    
 }
 
