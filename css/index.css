@@ -45,6 +45,6 @@ img{
 
 @media only screen and (max-width: 580px) {
     #menu, #boton-mensaje, #cartas{
-    width: 505px;
+    width: 100%;
 }
 
