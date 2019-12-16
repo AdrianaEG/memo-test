@@ -2,8 +2,12 @@
     width: 100%;
 }
 
-#menu, #boton-mensaje{
-    width: 800px;
+#menu{
+    width: 100%;
+}
+
+#boton-mensaje{
+    width: 600px;
 }
 
 img{
@@ -31,7 +35,7 @@ img{
 #cartas{
     text-align: center;
     padding-top: 25px;
-    width: 800px;
+    width: 650px;
 }
 
 #visor-tiempo, #estado, #contador-movimientos{
@@ -63,6 +67,15 @@ img{
     
     p{
         font-size: 10px;
+    }
+    
+    #contador-movimientos, #contenedor-estado, #contenedor-tiempo{
+        height: 5%;
+        font-size: 12px;
+    }
+    
+    #menu{
+        text-align: center;
     }
     
 }
