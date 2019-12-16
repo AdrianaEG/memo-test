@@ -1,110 +1,69 @@
 const $botonComenzar = document.querySelector('#comenzar');
 let arregloConImagenes = ['a.jpg', 'a.jpg', 'b.jpg', 'b.jpg', 'c.jpg', 'c.jpg', 'd.jpg', 'd.jpg', 'e.jpg', 'e.jpg', 'f.jpg', 'f.jpg', 'g.jpg', 'g.jpg', 'h.jpg', 'h.jpg', 'o.jpg', 'o.jpg', 'p.jpg', 'p.jpg'];
-let movimientos = 0;
+let movimientos = 0; //movimientos en cada vuelta 
 let aciertos;
-let movimientosTotales = 0;
-let n;
+let movimientosTotales = 0;  
+let n; //variable auxiliar utilizada para contar los segundos
 let contadorTiempo;
 
 $botonComenzar.onclick = function (event) {
-    //desactivarBoton();
-    
+
     reiniciar();
-    
     creaEstructura(4);
     desbloquearCartas();
 
     event.preventDefault();
 }
 
-function desactivarBoton() {
-    $botonComenzar.disabled = 'true';
+function reiniciar() {
+    aciertos = 0;
+    movimientosTotales = 0;
+    eliminarColoresGanador();
+    setearMensajes();
+    reiniciarTiempo();
+    limpiarTablero();
+    mezclarImagenes();
 }
 
-let srcCarta1 = '';
-let srcCarta2 = '';
-let idCarta1 = '';
-let idCarta2 = '';
-
-function juegaUsuario(e) {
-
-    let cartaSeleccionada = e.target;
-    let idDeCartaSeleccionada = cartaSeleccionada.attributes.id.value;
-    
-    cartaSeleccionada.style.transition = "all 0.7s ease" ;
-    cartaSeleccionada.style.transform = "rotateY(360deg)";
-    
-    setTimeout(function(){
-        cartaSeleccionada.style.transition = '';
-        cartaSeleccionada.style.transform = '';
-    }, 500);
-    
-    cartaSeleccionada.src = "img/" + arregloConImagenes[idDeCartaSeleccionada];
-
-    movimientos++;
-
-    if (movimientos === 1) {
-        srcCarta1 = cartaSeleccionada.attributes.src.value;
-        idCarta1 = cartaSeleccionada.attributes.id.value;
-        document.getElementById(idCarta1).onclick = function () {};
-        
-
-    } else {
-        bloquearCartas();
-        srcCarta2 = cartaSeleccionada.attributes.src.value;
-        idCarta2 = cartaSeleccionada.attributes.id.value;
-        
-        movimientosTotales++;
-        document.querySelector('#contador-movimientos').innerText = 'Cantidad de intentos: ' + movimientosTotales;
-
-        if (acierta(srcCarta1, srcCarta2)) {
-            
-            setTimeout(function(){
-                document.getElementById(idCarta1).style = 'pointer-events: none';
-                document.getElementById(idCarta2).style = 'pointer-events: none';
-            },500);
-            
-            aciertos++;
-            movimientos = 0;
-        } else {
-            setTimeout(function () {
-                document.getElementById(idCarta1).src = 'img/imagen00.gif';
-                document.getElementById(idCarta2).src = 'img/imagen00.gif';
-            }, 500);
-
-            movimientos = 0;
-            
-            setTimeout(function(){
-               desbloquearCartas();
-            },500)
-              
-        }
-        setTimeout(function(){
-               desbloquearCartas();
-        },500);
-    }
-
-    if (esGanador()) {
-        ganar();
+function eliminarColoresGanador() {
+    let contenedoresVerdes = document.querySelectorAll('.alert-success');
+    if (contenedoresVerdes !== null) {
+        contenedoresVerdes.forEach(function ($contenedor) {
+            $contenedor.classList.remove('alert-success');
+            $contenedor.classList.add('alert-primary');
+        });
     }
 }
 
-function ganar() {
-    
+function setearMensajes() {
+    document.querySelector('#contador-movimientos').innerText = 'Cantidad de intentos: ';
+    document.querySelector('#estado').innerText = 'A jugar!';
+}
+
+function reiniciarTiempo() {
     clearInterval(contadorTiempo);
-    //$botonComenzar.disabled = false;
-    
-    let contenedores = document.querySelectorAll('.alert-primary');
-    contenedores.forEach(function($contenedor){
-        $contenedor.classList.remove('alert-primary');
-        $contenedor.classList.add('alert-success');
-    });
-    
-    crearMensajesGanador();
+    n = 0;
+    contadorTiempo = setInterval(function () {
+        document.querySelector('#visor-tiempo').innerText = 'Tiempo de juego: ' + n;
+        n++;
+    }, 1000);
 }
 
-function crearMensajesGanador(){
-    document.querySelector('#estado').innerText = 'GANASTE!!! Hace click en comenzar para empezar de nuevo :)';
+function limpiarTablero() {
+    document.querySelector('#cartas').innerText = '';
+}
+
+function mezclarImagenes() {
+    let aleatorio = 0;
+    let auxiliar = 0;
+    for (let i = 0; i < arregloConImagenes.length; i++) {
+        aleatorio = Math.floor(Math.random() * (arregloConImagenes.length));
+        auxiliar = arregloConImagenes[aleatorio];
+
+        arregloConImagenes.splice(aleatorio, 1);
+        arregloConImagenes.push(auxiliar);
+    }
+    return arregloConImagenes;
 }
 
 function creaEstructura(filas) {
@@ -132,22 +91,82 @@ function creaEstructura(filas) {
     }
 }
 
-function mezclarImagenes() {
-    let aleatorio = 0;
-    let auxiliar = 0;
-    for (let i = 0; i < arregloConImagenes.length; i++) {
-        aleatorio = Math.floor(Math.random() * (arregloConImagenes.length));
-        auxiliar = arregloConImagenes[aleatorio];
-
-        arregloConImagenes.splice(aleatorio, 1);
-        arregloConImagenes.push(auxiliar);
-    }
-    return arregloConImagenes;
-}
-
 function desbloquearCartas() {
     document.querySelectorAll('img').forEach(function ($carta) {
         $carta.onclick = juegaUsuario;
+    });
+}
+
+let srcCarta1 = '';
+let srcCarta2 = '';
+let idCarta1 = '';
+let idCarta2 = '';
+
+function juegaUsuario(e) {
+
+    let cartaSeleccionada = e.target;
+    let idDeCartaSeleccionada = cartaSeleccionada.attributes.id.value;
+
+    darEfectoAlGirar(cartaSeleccionada);
+    quitarEfecto(cartaSeleccionada);
+    mostrarReversoCarta(cartaSeleccionada, idDeCartaSeleccionada);
+    movimientos++;
+
+    if (movimientos === 1) {
+        srcCarta1 = cartaSeleccionada.attributes.src.value;
+        idCarta1 = cartaSeleccionada.attributes.id.value;
+        document.getElementById(idCarta1).onclick = function () {};
+
+    } else { //ya seleccionó dos cartas entonces:
+        bloquearCartas();
+        srcCarta2 = cartaSeleccionada.attributes.src.value;
+        idCarta2 = cartaSeleccionada.attributes.id.value;
+
+        movimientosTotales++;
+        document.querySelector('#contador-movimientos').innerText = 'Cantidad de intentos: ' + movimientosTotales;
+
+        if (acierta(srcCarta1, srcCarta2)) {
+            deshabilitarCartasAcertadas(idCarta1, idCarta2);
+            aciertos++;
+            movimientos = 0;
+        } else {
+            ocultarReversoCarta(idCarta1, idCarta2);
+            movimientos = 0;
+            setTimeout(function () {
+                desbloquearCartas();
+            }, 500)
+        }
+        setTimeout(function () {
+            desbloquearCartas();
+        }, 500);
+    }
+    
+    if (esGanador()) {
+        ganar();
+    }
+}
+
+function darEfectoAlGirar(carta) {
+    carta.style.transition = "all 0.7s ease";
+    carta.style.transform = "rotateY(360deg)";
+}
+
+function quitarEfecto(carta) {
+    setTimeout(function () {
+        carta.style.transition = '';
+        carta.style.transform = '';
+    }, 500);
+}
+
+function mostrarReversoCarta(carta, id) {
+    carta.src = "img/" + arregloConImagenes[id];
+}
+
+function bloquearCartas() {
+    document.querySelectorAll('img').forEach(function ($imagen) {
+        $imagen.onclick = function () {
+
+        };
     });
 }
 
@@ -159,6 +178,19 @@ function acierta(src1, src2) {
     }
 }
 
+function deshabilitarCartasAcertadas(id1, id2) {
+    setTimeout(function () {
+        document.getElementById(id1).style = 'pointer-events: none';
+        document.getElementById(id2).style = 'pointer-events: none';
+    }, 600);
+}
+
+function ocultarReversoCarta(id1, id2) {
+    setTimeout(function () {
+        document.getElementById(id1).src = 'img/imagen00.gif';
+        document.getElementById(id2).src = 'img/imagen00.gif';
+    }, 700);
+}
 
 function esGanador() {
     if (aciertos === ((arregloConImagenes.length) / 2)) {
@@ -168,43 +200,21 @@ function esGanador() {
     }
 }
 
-function reiniciar() {
-    document.querySelector('#contador-movimientos').innerText = 'Cantidad de intentos: ';
-    
-    n = 0;
-    contadorTiempo = setInterval(function () {
-        document.querySelector('#visor-tiempo').innerText = 'Tiempo de juego: ' + n;
-        n++;
-    }, 1000);
-    
-    aciertos = 0;
-    document.querySelector('#estado').innerText = 'A jugar!';
-    eliminarCartasExistentes();
-    mezclarImagenes();
-    movimientosTotales = 0;
-    
-    let contenedoresVerdes = document.querySelectorAll('.alert-success');
-    if(contenedoresVerdes !== null){
-        contenedoresVerdes.forEach(function($contenedor){
-            $contenedor.classList.remove('alert-success');
-            $contenedor.classList.add('alert-primary');
-        });
-    }
-    
-    if(document.querySelector('#contenedor-movimientos') !== null){
-        document.querySelector('#contenedor-movimientos').remove();
-    }
-    document.querySelector('#contenedor-tiempo').className = 'col';
+function ganar() {
+
+    clearInterval(contadorTiempo);//detener tiempo
+    cambiarColoresMensajes();
+    crearMensajesGanador();
 }
 
-function eliminarCartasExistentes() {
-    document.querySelector('#cartas').innerText = '';
-}
-
-function bloquearCartas(){
-    document.querySelectorAll('img').forEach(function($imagen){
-        $imagen.onclick = function(){
-            
-        };
+function cambiarColoresMensajes(){
+    let contenedores = document.querySelectorAll('.alert-primary');
+    contenedores.forEach(function ($contenedor) {
+        $contenedor.classList.remove('alert-primary');
+        $contenedor.classList.add('alert-success');
     });
+}
+
+function crearMensajesGanador() {
+    document.querySelector('#estado').innerText = 'GANASTE!!! Hace click en comenzar para empezar de nuevo :)';
 }

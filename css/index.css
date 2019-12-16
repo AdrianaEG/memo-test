@@ -1,21 +1,21 @@
-#comenzar{
+#comenzar {
     width: 100%;
 }
 
-#menu{
+#menu {
     width: 100%;
 }
 
-#boton-mensaje{
+#boton-mensaje {
     width: 600px;
 }
 
-img{
+img {
     padding: 5px;
     height: 150px;
 }
 
-.fondo-imagenes{
+.fondo-imagenes {
     padding: .25rem;
     background-color: #fff;
     border: 1px solid #dee2e6;
@@ -24,59 +24,68 @@ img{
     height: 125px;
 }
 
-.oculto{
+.oculto {
     display: none;
 }
 
-.centrar{
+.centrar {
     text-align: center;
 }
 
-#cartas{
+#cartas {
     text-align: center;
     padding-top: 25px;
     width: 650px;
 }
 
-#visor-tiempo, #estado, #contador-movimientos{
+#visor-tiempo,
+#estado,
+#contador-movimientos {
     height: 80%;
 }
 
-#contenedor-boton{
+#contenedor-boton {
     padding-top: 40px;
 }
 
 
 @media only screen and (max-width: 580px) {
-    #menu, #boton-mensaje, #cartas{
-    width: 100%;
+
+    #menu,
+    #boton-mensaje,
+    #cartas {
+        width: 100%;
     }
-    
-    #menu, #contenedor-menu{
+
+    #menu,
+    #contenedor-menu {
         display: inline;
     }
-    
-    #visor-tiempo, #estado, #contador-movimientos{
+
+    #visor-tiempo,
+    #estado,
+    #contador-movimientos {
         width: 300px;
-        
+
     }
-    
-    #contenedor-boton{
+
+    #contenedor-boton {
         padding-top: 25px;
     }
-    
-    p{
+
+    p {
         font-size: 10px;
     }
-    
-    #contador-movimientos, #contenedor-estado, #contenedor-tiempo{
+
+    #contador-movimientos,
+    #contenedor-estado,
+    #contenedor-tiempo {
         height: 5%;
         font-size: 12px;
     }
-    
-    #menu{
+
+    #menu {
         text-align: center;
     }
-    
-}
 
+}
