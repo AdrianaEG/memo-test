@@ -68,8 +68,8 @@ function juegaUsuario(e) {
             movimientos = 0;
         } else {
             setTimeout(function () {
-                document.getElementById(idCarta1).src = 'img/carta01.jpg';
-                document.getElementById(idCarta2).src = 'img/carta01.jpg';
+                document.getElementById(idCarta1).src = 'img/imagen00.gif';
+                document.getElementById(idCarta2).src = 'img/imagen00.gif';
             }, 500);
 
             movimientos = 0;
@@ -117,18 +117,18 @@ function creaEstructura(filas) {
     let tablero = document.querySelector('#cartas');
     for (let j = 0; j < filas; j++) {
         let nuevoContenedor = document.createElement('div');
-        nuevoContenedor.className = 'row row-cols-4';
+        nuevoContenedor.className = 'row row-cols-6';
 
         tablero.appendChild(nuevoContenedor);
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 6; i++) {
             let nuevoCuadro = document.createElement('div');
             nuevoCuadro.className = 'col';
             nuevoContenedor.appendChild(nuevoCuadro);
 
             let nuevaImagen = document.createElement('img');
             nuevaImagen.className = 'img-fluid fondo-imagenes';
-            nuevaImagen.src = "img/carta01.jpg";
+            nuevaImagen.src = "img/imagen00.gif";
             nuevaImagen.id = numeroCarta;
 
             nuevoCuadro.appendChild(nuevaImagen);
