@@ -1,5 +1,5 @@
 const $botonComenzar = document.querySelector('#comenzar');
-let arregloConImagenes = ['a.jpg', 'a.jpg', 'b.jpg', 'b.jpg', 'c.jpg', 'c.jpg', 'd.jpg', 'd.jpg', 'e.jpg', 'e.jpg', 'f.jpg', 'f.jpg'];
+let arregloConImagenes = ['a.jpg', 'a.jpg', 'b.jpg', 'b.jpg', 'c.jpg', 'c.jpg', 'd.jpg', 'd.jpg', 'e.jpg', 'e.jpg', 'f.jpg', 'f.jpg', 'g.jpg', 'g.jpg', 'h.jpg', 'h.jpg', 'o.jpg', 'o.jpg', 'p.jpg', 'p.jpg'];
 let movimientos = 0;
 let aciertos;
 let movimientosTotales = 0;
@@ -7,7 +7,7 @@ let n;
 let contadorTiempo;
 
 $botonComenzar.onclick = function (event) {
-    desactivarBoton();
+    //desactivarBoton();
     
     reiniciar();
     
@@ -92,24 +92,19 @@ function juegaUsuario(e) {
 function ganar() {
     
     clearInterval(contadorTiempo);
-    $botonComenzar.disabled = false;
+    //$botonComenzar.disabled = false;
+    
+    let contenedores = document.querySelectorAll('.alert-primary');
+    contenedores.forEach(function($contenedor){
+        $contenedor.classList.remove('alert-primary');
+        $contenedor.classList.add('alert-success');
+    });
+    
     crearMensajesGanador();
 }
 
 function crearMensajesGanador(){
     document.querySelector('#estado').innerText = 'GANASTE!!! Hace click en comenzar para empezar de nuevo :)';
-    
-    /*let fila = document.querySelector('.row');
-    let nuevoContenedor = document.createElement('div');
-    nuevoContenedor.className = 'col-sm-3';
-    nuevoContenedor.setAttribute('id', 'contenedor-movimientos');
-    let nuevoCuadroMensaje = document.createElement('div');
-    nuevoCuadroMensaje.className = 'alert alert-primary';
-    let mensaje = document.createTextNode('Cantidad de movimientos realizados: ' + movimientosTotales);
-    
-    nuevoCuadroMensaje.appendChild(mensaje);
-    nuevoContenedor.appendChild(nuevoCuadroMensaje);
-    fila.appendChild(nuevoContenedor);*/
 }
 
 function creaEstructura(filas) {
@@ -187,6 +182,14 @@ function reiniciar() {
     eliminarCartasExistentes();
     mezclarImagenes();
     movimientosTotales = 0;
+    
+    let contenedoresVerdes = document.querySelectorAll('.alert-success');
+    if(contenedoresVerdes !== null){
+        contenedoresVerdes.forEach(function($contenedor){
+            $contenedor.classList.remove('alert-success');
+            $contenedor.classList.add('alert-primary');
+        });
+    }
     
     if(document.querySelector('#contenedor-movimientos') !== null){
         document.querySelector('#contenedor-movimientos').remove();
