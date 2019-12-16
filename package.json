@@ -1,0 +1,22 @@
+{
+  "name": "memo-test",
+  "version": "1.0.0",
+  "description": "Juego de memotest",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdrianaEG/memo-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdrianaEG/memo-test/issues"
+  },
+  "homepage": "https://github.com/AdrianaEG/memo-test#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1"
+  }
+}
