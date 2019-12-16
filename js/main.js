@@ -11,7 +11,7 @@ $botonComenzar.onclick = function (event) {
     
     reiniciar();
     
-    creaEstructura(3);
+    creaEstructura(4);
     desbloquearCartas();
 
     event.preventDefault();
@@ -117,11 +117,11 @@ function creaEstructura(filas) {
     let tablero = document.querySelector('#cartas');
     for (let j = 0; j < filas; j++) {
         let nuevoContenedor = document.createElement('div');
-        nuevoContenedor.className = 'row row-cols-6';
+        nuevoContenedor.className = 'row row-cols-5';
 
         tablero.appendChild(nuevoContenedor);
 
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 5; i++) {
             let nuevoCuadro = document.createElement('div');
             nuevoCuadro.className = 'col';
             nuevoContenedor.appendChild(nuevoCuadro);
