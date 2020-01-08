@@ -19,5 +19,8 @@
   "homepage": "https://github.com/AdrianaEG/memo-test#readme",
   "dependencies": {
     "bootstrap": "^4.4.1"
+  },
+  "devDependencies": {
+    "cypress": "^3.8.1"
   }
 }
