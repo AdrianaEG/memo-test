@@ -1,5 +1,5 @@
 const $botonComenzar = document.querySelector('#comenzar');
-let arregloConImagenes = ['a.jpg', 'a.jpg', 'b.jpg', 'b.jpg', 'c.jpg', 'c.jpg', 'd.jpg', 'd.jpg', 'e.jpg', 'e.jpg', 'f.jpg', 'f.jpg', 'g.jpg', 'g.jpg', 'h.jpg', 'h.jpg', 'o.jpg', 'o.jpg', 'p.jpg', 'p.jpg'];
+let arregloConImagenes = ['a', 'a', 'b', 'b', 'c', 'c', 'd', 'd', 'e', 'e', 'f', 'f', 'g', 'g', 'h', 'h', 'o', 'o', 'p', 'p'];
 let movimientos = 0; //movimientos en cada vuelta 
 let aciertos;
 let movimientosTotales = 0;  
@@ -71,7 +71,8 @@ function creaEstructura(filas) {
     let tablero = document.querySelector('#cartas');
     for (let j = 0; j < filas; j++) {
         let nuevoContenedor = document.createElement('div');
-        nuevoContenedor.className = 'row row-cols-5';
+        //nuevoContenedor.className = 'row row-cols-5';
+        nuevoContenedor.className = 'row';
 
         tablero.appendChild(nuevoContenedor);
 
@@ -82,6 +83,7 @@ function creaEstructura(filas) {
 
             let nuevaImagen = document.createElement('img');
             nuevaImagen.className = 'img-fluid fondo-imagenes';
+            nuevaImagen.classList.add(arregloConImagenes[numeroCarta]);//esta clase a, b, c... etc No hace absolutamente nada pero me sirve para hacer el test. 
             nuevaImagen.src = "img/imagen00.gif";
             nuevaImagen.id = numeroCarta;
 
@@ -126,7 +128,8 @@ function juegaUsuario(e) {
         document.querySelector('#contador-movimientos').innerText = 'Cantidad de intentos: ' + movimientosTotales;
 
         if (acierta(srcCarta1, srcCarta2)) {
-            deshabilitarCartasAcertadas(idCarta1, idCarta2);
+            //deshabilitarCartasAcertadas(idCarta1, idCarta2);
+            eliminarCartas(idCarta1, idCarta2);
             aciertos++;
             movimientos = 0;
         } else {
@@ -134,16 +137,23 @@ function juegaUsuario(e) {
             movimientos = 0;
             setTimeout(function () {
                 desbloquearCartas();
-            }, 500)
+            }, 800)
         }
         setTimeout(function () {
             desbloquearCartas();
-        }, 500);
+        }, 800);
     }
     
     if (esGanador()) {
         ganar();
     }
+}
+
+function eliminarCartas(id1, id2){
+    setTimeout(function(){
+        document.getElementById(id1).remove();
+        document.getElementById(id2).remove();
+    }, 800);
 }
 
 function darEfectoAlGirar(carta) {
@@ -155,11 +165,11 @@ function quitarEfecto(carta) {
     setTimeout(function () {
         carta.style.transition = '';
         carta.style.transform = '';
-    }, 500);
+    }, 800);
 }
 
 function mostrarReversoCarta(carta, id) {
-    carta.src = "img/" + arregloConImagenes[id];
+    carta.src = "img/" + arregloConImagenes[id] + ".jpg";
 }
 
 function bloquearCartas() {
@@ -182,14 +192,14 @@ function deshabilitarCartasAcertadas(id1, id2) {
     setTimeout(function () {
         document.getElementById(id1).style = 'pointer-events: none';
         document.getElementById(id2).style = 'pointer-events: none';
-    }, 600);
+    }, 800);
 }
 
 function ocultarReversoCarta(id1, id2) {
     setTimeout(function () {
         document.getElementById(id1).src = 'img/imagen00.gif';
         document.getElementById(id2).src = 'img/imagen00.gif';
-    }, 700);
+    }, 800);
 }
 
 function esGanador() {
