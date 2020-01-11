@@ -59,13 +59,14 @@ context('memotest', () => {
            cy.get('img').should('have.length', NUMERO_CARTAS);
             
             listaDePares.forEach((par) => {
-               cy.get(par[0]).click();
+                cy.wait(1000);
+                cy.get(par[0]).click();
                 cy.get(par[1]).click();
             });
             
             cy.get('img').should('have.length', 0);
                         
-            cy.get('estado').contains('GANASTE!!! Hace click en comenzar para empezar de nuevo :)');
+            cy.get('#estado').contains('GANASTE!!! Hace click en comenzar para empezar de nuevo :)');
             
         });
         
