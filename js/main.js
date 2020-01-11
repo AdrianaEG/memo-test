@@ -11,7 +11,7 @@ $botonComenzar.onclick = function (event) {
     reiniciar();
     creaEstructura(4);
     desbloquearCartas();
-
+    
     event.preventDefault();
 }
 
