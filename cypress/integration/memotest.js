@@ -40,8 +40,7 @@ context('memotest', () => {
 
     describe('resuelve el juego', () => {
         let mapaDePares, listaDePares;
-
-        before(() => {
+         before(() => {
             cy.clock();
         });
         
@@ -58,11 +57,12 @@ context('memotest', () => {
                 cy.get('img').should('have.length', NUMERO_CARTAS);
             });
         });
-
+        
+        
         it('resuelve el juego', () => {
-
+            
             cy.get('img').should('have.length', NUMERO_CARTAS);
-
+                        
             listaDePares.forEach((par) => {
                 cy.tick(1000);
                 cy.get(par[0]).click();
